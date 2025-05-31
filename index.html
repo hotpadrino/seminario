@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>Descarga tu diploma</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      max-width: 500px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #f3f3f3;
+      border-radius: 12px;
+      box-shadow: 0 0 10px rgba(0,0,0,0.1);
+      text-align: center;
+    }
+    input, button {
+      padding: 10px;
+      font-size: 16px;
+      width: 80%;
+      margin: 10px 0;
+    }
+    button {
+      background-color: #007BFF;
+      color: white;
+      border: none;
+      border-radius: 5px;
+    }
+    a {
+      display: block;
+      margin-top: 20px;
+      font-weight: bold;
+      color: #007BFF;
+    }
+  </style>
+</head>
+<body>
+  <h2>Descarga tu diploma</h2>
+  <p>Ingresa tu número de identificación:</p>
+  <form onsubmit="buscarDiploma(event)">
+    <input type="text" id="identificacion" placeholder="Ej: 123456789" required>
+    <button type="submit">Buscar</button>
+  </form>
+  <div id="resultado"></div>
+
+  <script>
+    function buscarDiploma(event) {
+      event.preventDefault();
+      const id = document.getElementById("identificacion").value.trim();
+      const url = `https://raw.githubusercontent.com/hotpadrino/seminario/main/${id}.pdf`;
+
+      document.getElementById("resultado").innerHTML = `
+        <p>Haz clic abajo para descargar tu diploma:</p>
+        <a href="${url}" target="_blank" download>Descargar Diploma</a>
+      `;
+    }
+  </script>
+</body>
+</html>
